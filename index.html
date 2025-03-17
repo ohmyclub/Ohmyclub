@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oh My Club - Eventos Exclusivos en Chamartín</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Descubre Oh My Club, el espacio más exclusivo para eventos en Chamartín, Madrid. Organiza fiestas privadas y eventos corporativos inolvidables.">
+    <meta name="keywords" content="Oh My Club, eventos Madrid, Chamartín, fiestas exclusivas, eventos corporativos">
+    
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Oh My Club - Eventos Exclusivos">
+    <meta property="og:description" content="El mejor lugar para eventos exclusivos en Chamartín, Madrid">
+    <meta property="og:image" content="https://www.ohmyclub.es/images/eventos/evento1.jpg">
+    <meta property="og:url" content="https://www.ohmyclub.es">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+    :root {
+        --primary-gold: #FFD700;
+        --dark-gold: #DAA520;
+        --background-dark: #1a1a1a;
+        --text-light: #fff;
+        --text-gray: #ddd;
+    }
+
+    /* Global Styles */
+    body {
+        font-family: 'Poppins', Arial, sans-serif;
+        background-color: var(--background-dark);
+        color: var(--text-light);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(20px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .animate-slide-left {
+        animation: slideInLeft 0.8s ease-out forwards;
+    }
+
+    .animate-slide-right {
+        animation: slideInRight 0.8s ease-out forwards;
+    }
+
+    .animate-scale {
+        animation: scaleIn 0.8s ease-out forwards;
+    }
+
+    /* Animation delays */
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+
+    /* Header Styles */
+    header {
+        background-color: #000;
+        color: var(--primary-gold);
+        text-align: center;
+        padding: 4rem 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header h1 {
+        font-size: 3.5em;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+    }
+
+    header h1::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--primary-gold);
+        bottom: -5px;
+        left: 0;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    header h1:hover::after {
+        transform: scaleX(1);
+    }
+
+    header p {
+        font-size: 1.5em;
+        color: var(--text-gray);
+    }
+
+    /* Section Styles */
+    section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 2.5em;
+        color: var(--primary-gold);
+        margin-bottom: 1.5rem;
+    }
+
+    /* Gallery Styles */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover::after {
+        opacity: 1;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    /* Form Styles */
+    .contact-form {
+        max-width: 600px;
+        margin: 2rem auto;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #333;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+        transition: all 0.3s ease;
+    }
+
+    .form-control:hover {
+        border-color: var(--primary-gold);
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-gold);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-submit {
+        background-color: var(--primary-gold);
+        color: #000;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .btn-submit:hover {
+        background-color: var(--dark-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(218, 165, 32, 0.3);
+    }
+
+    .btn-submit:active {
+        transform: translateY(0);
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: #000;
+        color: var(--primary-gold);
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .social-links {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .social-links a {
+        color: var(--primary-gold);
+        font-size: 1.2em;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.8rem 1.2rem;
+        border-radius: 20px;
+        position: relative;
+        background-color: rgba(255, 215, 0, 0.1);
+    }
+
+    .social-links a:hover {
+        color: var(--dark-gold);
+        transform: translateY(-2px);
+        background-color: rgba(255, 215, 0, 0.2);
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+    }
+
+    .social-links a[href*="wa.me"]:hover {
+        background-color: rgba(37, 211, 102, 0.2); /* WhatsApp green */
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+    }
+
+    .social-links a::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--primary-gold);
+        bottom: 0;
+        left: 0;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        transform-origin: right;
+    }
+
+    .social-links a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    .social-links a i {
+        margin-right: 8px;
+    }
+
+    /* Video Gallery Styles */
+    .video-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    .video-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        background-color: rgba(0, 0, 0, 0.2);
+        transition: all 0.4s ease;
+    }
+
+    .video-item:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-item video,
+    .video-item iframe {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border: none;
+        border-radius: 15px;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 2.5em;
+        }
+        
+        header p {
+            font-size: 1.2em;
+        }
+        
+        section {
+            padding: 2rem 1rem;
+        }
+        
+        .gallery {
+            grid-template-columns: 1fr;
+        }
+        
+        .video-gallery {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header class="animate-fade-in">
+        <h1>Oh My Club</h1>
+        <p>Eventos exclusivos en el corazón de Chamartín</p>
+    </header>
+
+    <section id="about" class="animate-fade-in">
+        <h2>Bienvenidos a Oh My Club</h2>
+        <p>Organizamos eventos inolvidables, desde fiestas privadas hasta eventos corporativos en un ambiente único en Madrid. ¡Descubre la experiencia Oh My Club!</p>
+    </section>
+
+    <section id="gallery">
+        <h2>Galería de Fotos</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3" alt="Evento en Oh My Club">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30" alt="Fiesta privada Oh My Club">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745" alt="Evento exclusivo Oh My Club">
+            </div>
+        </div>
+
+        <h2>Videos</h2>
+        <div class="video-gallery">
+            <!-- Los videos se agregarán aquí cuando estén disponibles -->
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contacta con Nosotros</h2>
+        <p>Si tienes alguna consulta o deseas organizar tu evento, no dudes en escribirnos. Estaremos encantados de ayudarte a crear un evento inolvidable.</p>
+
+        <form id="contact-form" class="contact-form">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono">
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Síguenos en redes sociales: <strong>@joseandresxxiii</strong></p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/joseandresxxiii" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://smdgroup.club/es/jose-andres/club/ohmyclub" target="_blank">
+                <i class="fas fa-calendar-check"></i> Reservar mesa SMD
+            </a>
+            <a href="https://www.fourvenues.com/es/florentinoperez" target="_blank">
+                <i class="fas fa-glass-cheers"></i> Reservar en Fourvenues
+            </a>
+            <a href="https://wa.me/34722705922" target="_blank">
+                <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+            </a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animation setup
+        const animationConfig = {
+            '#about': 'animate-fade-in',
+            '#gallery': 'animate-slide-left',
+            '#contact': 'animate-slide-right',
+            '.gallery-item': 'animate-scale'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const animationClass = animationConfig[element.id || element.className] || 'animate-fade-in';
+                    element.classList.add(animationClass);
+
+                    if (element.classList.contains('gallery-item')) {
+                        element.classList.add(`delay-${(index + 1) * 100}`);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '50px'
+        });
+
+        document.querySelectorAll('section, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form validation and submission
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            const formInputs = contactForm.querySelectorAll('input, textarea');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+                contactForm.reset();
+            });
+        }
+
+        // Gallery Image Modal
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const modal = document.createElement('div');
+                modal.className = 'gallery-modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <img src="${img.src}" alt="${img.alt}">
+                        <button class="modal-close">&times;</button>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+
+                modal.querySelector('.modal-close').addEventListener('click', () => {
+                    modal.remove();
+                });
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
