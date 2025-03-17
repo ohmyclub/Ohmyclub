@@ -40,10 +40,6 @@
             transition: transform 0.3s ease;
         }
 
-        .top-reservation-links.hidden {
-            transform: translateY(-100%);
-        }
-
         .reservation-btn {
             background-color: var(--primary-gold);
             color: #000;
@@ -71,6 +67,7 @@
             padding: 4rem 2rem;
             position: relative;
             overflow: hidden;
+            margin-top: 40px;
         }
 
         header h1 {
@@ -96,6 +93,23 @@
             margin-bottom: 1.5rem;
         }
 
+        .private-events-content {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            margin: 1rem 0;
+            font-size: 1.1em;
+        }
+
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -107,6 +121,12 @@
             position: relative;
             overflow: hidden;
             border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
         }
 
         .gallery-item img {
@@ -158,24 +178,34 @@
             padding: 0.8rem 1.2rem;
             border-radius: 20px;
             background-color: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .social-links a:hover {
             color: var(--dark-gold);
             background-color: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
+            header { margin-top: 120px; }
             header h1 { font-size: 2.5em; }
             header p { font-size: 1.2em; }
             section { padding: 2rem 1rem; }
+            .gallery { grid-template-columns: 1fr; }
             .video-gallery { grid-template-columns: 1fr; }
+            .top-reservation-links {
+                flex-direction: column;
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Audio background -->
-    <audio autoplay id="bgMusic">
+    <audio autoplay loop id="bgMusic">
         <source src="https://megastar-cope.flumotion.com/chunks.m3u8" type="application/x-mpegURL">
         Tu navegador no soporta el elemento de audio.
     </audio>
@@ -196,6 +226,26 @@
         <h1>Oh My Club</h1>
         <p>Eventos exclusivos en el corazón de Chamartín</p>
     </header>
+
+    <section id="private-events">
+        <h2>Eventos Privados</h2>
+        <div class="private-events-content">
+            <h3>Celebra tu evento de empresa en Oh My Club, la discoteca más exclusiva de Madrid</h3>
+            
+            <p>Si estás buscando el lugar perfecto para celebrar un evento de empresa inolvidable, Oh My Club es la opción ideal. Nuestra discoteca combina elegancia, exclusividad y un ambiente vibrante que hará que tu equipo disfrute de una experiencia única.</p>
+
+            <h4>¿Por qué elegir Oh My Club para tu evento de empresa?</h4>
+            <ul class="benefits-list">
+                <li>✅ Ubicación privilegiada en Madrid: Fácil acceso y en una zona exclusiva de la ciudad.</li>
+                <li>✅ Espacio sofisticado y versátil: Adaptamos el club a las necesidades de tu evento.</li>
+                <li>✅ Gastronomía y cócteles de primera: Disfruta de una oferta gastronómica de calidad.</li>
+                <li>✅ Espectáculos y DJ's en vivo: Sorprende a tu equipo con música y entretenimiento.</li>
+                <li>✅ Servicio VIP: Atención personalizada para que todo salga perfecto.</li>
+            </ul>
+
+            <p>Además, si necesitas transporte exclusivo para tu equipo, ofrecemos servicio de limusina o traslado privado.</p>
+        </div>
+    </section>
 
     <section id="gallery">
         <h2>Galería</h2>
@@ -224,31 +274,35 @@
             <a href="https://www.instagram.com/joseandresxxiii" target="_blank">
                 <i class="fab fa-instagram"></i> Instagram
             </a>
+            <a href="https://smdgroup.club/es/jose-andres/club/ohmyclub" target="_blank">
+                <i class="fas fa-calendar-check"></i> Reservar mesa SMD
+            </a>
+            <a href="https://www.fourvenues.com/es/florentinoperez" target="_blank">
+                <i class="fas fa-glass-cheers"></i> Reservar en Fourvenues
+            </a>
+            <a href="https://wa.me/34722705922" target="_blank">
+                <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+            </a>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.volume = 0.5;
+
             let lastScrollTop = 0;
             const reservationLinks = document.querySelector('.top-reservation-links');
-            let scrollTimeout;
-
+            
             window.addEventListener('scroll', () => {
-                clearTimeout(scrollTimeout);
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
                 if (scrollTop > lastScrollTop) {
-                    reservationLinks.classList.add('hidden');
+                    reservationLinks.style.transform = 'translateY(-100%)';
                 } else {
-                    reservationLinks.classList.remove('hidden');
+                    reservationLinks.style.transform = 'translateY(0)';
                 }
                 lastScrollTop = scrollTop;
-
-                scrollTimeout = setTimeout(() => {
-                    if (scrollTop > 100) {
-                        reservationLinks.classList.add('hidden');
-                    }
-                }, 2000);
             });
         });
     </script>
